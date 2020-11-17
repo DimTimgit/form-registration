@@ -3,12 +3,15 @@ import { FormContext } from "./FormContext";
 import { useForm } from "react-hook-form";
 import { Redirect, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Dropdown from "./Dropdown";
+import './Dropdown.scss';
 
-const RegisterForm = () => {
+function RegisterForm() {
   const history = useHistory();
   const { register, handleSubmit, errors, setError, watch } = useForm({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [users, setUsers] = useContext(FormContext);
 
   const password = useRef({});
@@ -25,32 +28,74 @@ const RegisterForm = () => {
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+  const updatePhone = (e) => {
+    setPhone(e.target.value);
+  };
 
   function onSubmitForm(data) {
     console.log(data);
   }
+
+  const items = [
+    {
+      id: 1,
+      value: 'Pulp Fiction',
+    },
+    {
+      id: 2,
+      value: 'The Prestige',
+    },
+    {
+      id: 3,
+      value: 'Blade Runner 2049',
+    },
+  ];
+
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1 style={{ borderBottom: "3px dotted rgb(212, 212, 212)" }}>
-          Registration Form
+        <h1>
+          Регистрация
         </h1>
+        <small className="signin">
+          Уже есть аккаунт?
+              <Link to="/login">
+            <strong className="login_open">Войти</strong>
+          </Link>
+        </small>
 
-        <form onSubmit={handleSubmit(onSubmitForm)}>
+        <div className="container">
+          <h1 style={{ textAlign: 'center' }}>
+            Buy Movies{' '}
+            <span role="img" aria-label="Movie projector">
+              🎥
+        </span>
+          </h1>
+          <Dropdown title="Select movie" items={items} multiSelect />
+        </div>
+
+        <form className="register" onSubmit={handleSubmit(onSubmitForm)}>
           <div className="firstName">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">Имя</label>
             <input
-              className=" "
-              placeholder="First Name"
+              className=""
+              placeholder="Введите Ваше имя"
               type="text"
               value={name}
               name="name"
-              ref={register({ required: "Enter your name *" })}
+              ref={register({
+                required: "Введено некорректное значение",
+                pattern: {
+                  value: /^[а-яА-ЯёЁa-zA-Z][а-яА-ЯёЁa-zA-Z- \.]{1,20}$/,
+                  message: "Введите действительное имя",
+                },
+
+              })}
               onChange={updateName}
             />
             {errors.name && (
               <p className="error">
-                <span style={{ color: "red" }}>{errors.name.message}</span>
+                <span>{errors.name.message}</span>
               </p>
             )}
           </div>
@@ -59,64 +104,89 @@ const RegisterForm = () => {
             <label htmlFor="email">Email</label>
             <input
               className=""
-              placeholder="Email"
+              placeholder="Введите Ваш Email"
               type="email"
               name="email"
               value={email}
               ref={register({
-                required: "Enter your e-mail *",
+                required: "Введено некорректное значение",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Enter a valid e-mail address",
+                  message: "Введите действительный адрес электронной почты",
                 },
               })}
               onChange={updateEmail}
             />
             {errors.email && (
               <p className="error">
-                <span style={{ color: "red" }}>{errors.email.message}</span>
+                <span>{errors.email.message}</span>
+              </p>
+            )}
+          </div>
+
+          <div className="phone">
+            <label htmlFor="phone">Номер телефона</label>
+            <input
+              className=" "
+              placeholder="Введите номер телефона"
+              type="text"
+              value={phone}
+              name="phone"
+              ref={register({
+                required: "Введено некорректное значение",
+                pattern: {
+                  value: /^[0-9|\ |\-|\(|\)|\+]{10,17}[0-9|\ |\-|\(|\)]$/,
+                  message: "Введите действительный номер телефона",
+                },
+
+              })}
+              onChange={updatePhone}
+            />
+            {errors.phone && (
+              <p className="error">
+                <span>{errors.phone.message}</span>
               </p>
             )}
           </div>
 
           <div className="password">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Пароль</label>
             <input
               className=" "
-              placeholder="Password"
+              placeholder="Введите Ваш пароль"
               type="password"
               name="password"
               ref={register({
-                required: "You must specify a password *",
+                required: "Введено некорректное значение",
                 minLength: {
                   value: 6,
-                  message: "password must have atleast 6 characters",
+                  message: "пароль должен содержать не менее 6 символов",
                 },
               })}
             />
             {errors.password && (
               <p className="error">
-                <span style={{ color: "red" }}>{errors.password.message}</span>
+                <span>{errors.password.message}</span>
               </p>
             )}
           </div>
 
           <div className="repassword">
-            <label htmlFor="repassword">Repeat password</label>
+            <label htmlFor="repassword">Повторите пароль</label>
             <input
               className=" "
-              placeholder="Retype Password"
+              placeholder="Повторите пароль"
               type="password"
               name="repassword"
               ref={register({
-                required: "Retype your password *",
+                required: "Введено некорректное значение",
                 validate: (value) =>
-                  value === password.current || "The passwords do not match",
+                  value === password.current || "Пароли не совпадают",
               })}
             />
             {errors.repassword && (
               <p className="error">
-                <span style={{ color: "red" }}>
+                <span>
                   {errors.repassword.message}
                 </span>
               </p>
@@ -124,26 +194,21 @@ const RegisterForm = () => {
           </div>
 
           <div className="createAccount">
-            <Link to="/login" style={{width:"100%"}}>
+            <Link to="/login" style={{ width: "100%" }}>
               <button type="submit" onClick={handleSubmit(onSubmit)}>
-                CREATE ACCOUNT
+                Зарегистрироваться
               </button>
             </Link>
-            <small className="signin">
-              Already Have an Account?
-              <Link to="/login">
-                <strong> SIGNIN</strong>
-              </Link>
-            </small>
-
             {errors.name &&
               errors.email &&
+              errors.phone &&
               errors.password &&
-              "All fields are required"}
+              "Все поля обязательны для заполнения"}
           </div>
         </form>
       </div>
     </div>
+
   );
 };
 export default RegisterForm;

@@ -5,90 +5,140 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #34495e;
+  background-color: #E5E5E5;
 }
 
 .form-wrapper {
-  width: 400px;
+  min-width: 360px;
+  min-height: 100%;
+  max-width: 460px;
+  max-height: 789px;
   display: flex;
   flex-direction: column;
-  padding: 20px 40px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 50px #555;
+  padding: 30px 30px 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0px 12px 24px rgba(44, 39, 56, 0.02), 0px 32px 64px rgba(44, 39, 56, 0.04);;
   background-color: #ffffff;
 }
 
-form {
+.register {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
 h1 {
-  text-align: center;
-  width: 100%;
-  color: #111;
-  font-weight: lighter;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: relative;
+  margin-bottom: 9px;
+  height: 44px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 44px;
+  color: #2C2738;
+
+}
+
+.login_open{
+  height: 22px;
+  left: 144px;
+  right: 210px;
+  margin-left: 6px;
+  top: 0px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #0880AE;
 }
 
 label {
-  font-size: 0.8em;
-  margin-bottom: 0.25em;
-  color: rgb(27, 25, 25);
-  font-weight: lighter;
+  position: relative;
+  width: 32px;
+  height: 21px;
+  margin-bottom: 7px;
+  left: 0px;
+  top: 0px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  color: #756F86;
 }
 
 input {
-  padding: 10px 10px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid #cfcfcf;
+  position: relative;
+  width: 400px;
+  height: 52px;
+  margin-top: 7px;
+  margin-bottom: 34px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background: #FFFFFF;
+  border: 1px solid #DBE2EA;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+  border-radius: 6px;
 }
 
 input::placeholder {
-  font-size: 1.2em;
-  font-weight: lighter;
-  color: #999;
+  position: absolute;
+  width: 287px;
+  height: 21px;
+  left: 16px;
+  top: 16px;
+  padding-left: 10px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #7C9CBF;
 }
 
 input.error {
   border: 1px solid red;
 }
 
-.errorMessage {
-  color: red;
-  font-size: 0.75em;
-  display: relative;
+input:focus {
+  border: 2px solid #0880AE;
 }
 
-.firstName {
-  margin-right: 1%;
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
 }
 
-.lastName {
-  margin-left: 1%;
+span {
+  position: relative;
+  width: 360px;
+  height: 18px;
+  margin: 0 px;
+  left: 0px;
+  bottom: 0px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FF7171;
 }
 
 .firstName,
 .email,
 .password,
 .repassword {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.firstName,
-.repassword {
   width: 100%;
 }
 
-.email,
-.password {
-  width: 100%;
-}
 email.errors {
   color: red;
 }
@@ -101,30 +151,64 @@ email.errors {
 }
 
 .createAccount button {
-  background-color: #85929e;
-  color: #fff;
-  border: 2px solid #fff;
-  width: 100%;
-  margin-top: 1em;
-  padding: 8px 0px;
-  font-size: 1em;
-  font-weight: lighter;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+  position: relative;
+  color: #B1B5BF;
+  width: 400px;
+  height: 56px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #DBE2EA;
+  box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.08), 0px 4px 8px rgba(44, 39, 56, 0.08);
+  border-radius: 6px;
 }
 
 .createAccount button:hover {
   color: #fff;
-  background-color: #85929e;
+  background-color: #0880AE;
   border: 2px solid #1b4f72;
-  border-radius: 10px;
+  border-radius: 6px;
+}
+button {
+  position: relative;
+  height: 21px;
+  left: 121px;
+  right: 121px;
+  top: calc(50% - 21px/2 + 0.5px);
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: #EBF4F8;
+  border: none !important;
 }
 
 .signin {
-  color: black;
+  position: relative;
+  left: 0px;
+  right: 262px;
+  top: 0%;
+  margin-bottom: 57px;
+  bottom: 15.38%;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #2C2738;
+}
+.errorMessage {
+  display: relative;
+  position: absolute;
 }
 
 .createAccount small {
   color: #999;
   font-weight: lighter;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap');

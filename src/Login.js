@@ -46,20 +46,25 @@ const Login = () => {
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1 style={{ borderBottom: "3px dotted rgb(212, 212, 212)" }}>
-          Login Form
+        <h1>
+          Авторизация
         </h1>
-
+        <small className="signin">
+          Уже есть аккаунт?
+              <Link to="/">
+            <strong>Регистрация</strong>
+          </Link>
+        </small>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <div className="firstName">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">Имя</label>
             <input
               className=" "
-              placeholder="First Name"
+              placeholder="Введите Ваше имя"
               type="text"
               value={name}
               name="name"
-              ref={register({ required: "Enter your name *" })}
+              ref={register({ required: "Введите Ваше имя *" })}
               onChange={updateName}
             />
             {errors.name && (
@@ -73,15 +78,15 @@ const Login = () => {
             <label htmlFor="email">Email</label>
             <input
               className=""
-              placeholder="Email"
+              placeholder="Введите Ваш Email"
               type="email"
               name="email"
               value={email}
               ref={register({
-                required: "Enter your e-mail *",
+                required: "Введите Ваш Email *",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Enter a valid e-mail address",
+                  message: "Введите действительный адрес электронной почты",
                 },
               })}
               onChange={updateEmail}
@@ -94,17 +99,17 @@ const Login = () => {
           </div>
 
           <div className="password">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Пароль</label>
             <input
               className=" "
-              placeholder="Password"
+              placeholder="Введите Ваш пароль"
               type="password"
               name="password"
               ref={register({
-                required: "You must specify a password *",
+                required: "Вы должны указать пароль *",
                 minLength: {
                   value: 6,
-                  message: "password must have atleast 6 characters",
+                  message: "пароль должен содержать не менее 6 символов",
                 },
               })}
             />
@@ -117,20 +122,12 @@ const Login = () => {
 
           <div className="createAccount">
             <button type="submit" onClick={handleSubmit(onSubmit)}>
-              LOGIN
+              ВОЙТИ
             </button>
-
-            <small className="signin">
-              Dont Have an Account?
-              <Link to="/">
-                <strong> SIGNUP</strong>
-              </Link>
-            </small>
-
             {errors.name &&
               errors.email &&
               errors.password &&
-              "All fields are required"}
+              "Все поля обязательны для заполнения"}
           </div>
         </form>
       </div>
