@@ -3,17 +3,15 @@ import { FormContext } from "./FormContext";
 import { useForm } from "react-hook-form";
 import { Redirect, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Dropdown from "./Dropdown";
-import './Dropdown.scss';
 
-function RegisterForm() {
+const RegisterForm = () => {
   const history = useHistory();
   const { register, handleSubmit, errors, setError, watch } = useForm({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [tnc, setTnc] = useState(false);
   const [users, setUsers] = useContext(FormContext);
-
   const password = useRef({});
   password.current = watch("password", "");
   const onSubmit = async (data) => {
@@ -24,7 +22,9 @@ function RegisterForm() {
   const updateName = (e) => {
     setName(e.target.value);
   };
-
+  const updateTnc = (e) => {
+    setTnc(e.target.value);
+  };
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -35,21 +35,10 @@ function RegisterForm() {
   function onSubmitForm(data) {
     console.log(data);
   }
-
-  const items = [
-    {
-      id: 1,
-      value: 'Pulp Fiction',
-    },
-    {
-      id: 2,
-      value: 'The Prestige',
-    },
-    {
-      id: 3,
-      value: 'Blade Runner 2049',
-    },
-  ];
+  function getFormData(e) {
+    console.warn(tnc)
+    e.preventDefault()
+  }
 
   return (
     <div className="wrapper">
@@ -63,16 +52,6 @@ function RegisterForm() {
             <strong className="login_open">Войти</strong>
           </Link>
         </small>
-
-        <div className="container">
-          <h1 style={{ textAlign: 'center' }}>
-            Buy Movies{' '}
-            <span role="img" aria-label="Movie projector">
-              🎥
-        </span>
-          </h1>
-          <Dropdown title="Select movie" items={items} multiSelect />
-        </div>
 
         <form className="register" onSubmit={handleSubmit(onSubmitForm)}>
           <div className="firstName">
@@ -89,7 +68,6 @@ function RegisterForm() {
                   value: /^[а-яА-ЯёЁa-zA-Z][а-яА-ЯёЁa-zA-Z- \.]{1,20}$/,
                   message: "Введите действительное имя",
                 },
-
               })}
               onChange={updateName}
             />
@@ -138,7 +116,6 @@ function RegisterForm() {
                   value: /^[0-9|\ |\-|\(|\)|\+]{10,17}[0-9|\ |\-|\(|\)]$/,
                   message: "Введите действительный номер телефона",
                 },
-
               })}
               onChange={updatePhone}
             />
@@ -193,6 +170,28 @@ function RegisterForm() {
             )}
           </div>
 
+          <div className="checkbox">
+            <label for="check1"></label>
+            <input id="check1"
+              type="checkbox"
+              name="check"
+              value="check1"
+              onChange={(e) => setTnc(e.target.checked)}
+              name="tnc"
+              value={tnc}
+              ref={register({
+                required: "Введено некорректное значение",
+              })}
+              onChange={updateTnc}
+            />
+            {errors.tnc && (
+              <p className="error">
+                <span>{errors.tnc.message}</span>
+              </p>
+            )}
+            <span className="check">Принимаю <a href="#" className="conditions">условия</a> использования</span>
+          </div>
+
           <div className="createAccount">
             <Link to="/login" style={{ width: "100%" }}>
               <button type="submit" onClick={handleSubmit(onSubmit)}>
@@ -203,6 +202,7 @@ function RegisterForm() {
               errors.email &&
               errors.phone &&
               errors.password &&
+              errors.tnc &&
               "Все поля обязательны для заполнения"}
           </div>
         </form>
