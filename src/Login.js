@@ -1,21 +1,15 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { FormContext } from "./FormContext";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Axios from "axios";
 
 const Login = () => {
   const history = useHistory();
-  const { register, handleSubmit, errors, setError, watch } = useForm({});
+  const { register, handleSubmit, errors } = useForm({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [users, setUsers] = useContext(FormContext);
-
-  const password = useRef({});
-  password.current = watch("password", "");
   const onSubmit = async (data) => {
-    history.push("/homepage");
+    history.push("/login");
     alert(JSON.stringify(data));
   };
 
@@ -27,20 +21,8 @@ const Login = () => {
     setEmail(e.target.value);
   };
 
-  // const updatePassword = (e) => {
-  //   setPassword(e.target.value);
-  // };
-  // const updateRePassword = (e) => {
-  //   setRePassword(e.target.value);
-  // };
-
   function onSubmitForm(data) {
     console.log(data);
-
-    // setUsers((prevForm) => [
-    //   ...prevForm,
-    //   { name: name, email, password, repassword },
-    // ]);
   }
 
   return (
@@ -52,10 +34,10 @@ const Login = () => {
         <small className="signin">
           Уже есть аккаунт?
               <Link to="/">
-            <strong>Регистрация</strong>
+            <strong className="login_open">Регистрация</strong>
           </Link>
         </small>
-        <form onSubmit={handleSubmit(onSubmitForm)}>
+        <form className="register" onSubmit={handleSubmit(onSubmitForm)}>
           <div className="firstName">
             <label htmlFor="firstName">Имя</label>
             <input
@@ -64,7 +46,7 @@ const Login = () => {
               type="text"
               value={name}
               name="name"
-              ref={register({ required: "Введите Ваше имя *" })}
+              ref={register({ required: "Введите Ваше имя" })}
               onChange={updateName}
             />
             {errors.name && (
@@ -83,7 +65,7 @@ const Login = () => {
               name="email"
               value={email}
               ref={register({
-                required: "Введите Ваш Email *",
+                required: "Введите Ваш Email",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                   message: "Введите действительный адрес электронной почты",
@@ -97,39 +79,15 @@ const Login = () => {
               </p>
             )}
           </div>
-
-          <div className="password">
-            <label htmlFor="password">Пароль</label>
-            <input
-              className=" "
-              placeholder="Введите Ваш пароль"
-              type="password"
-              name="password"
-              ref={register({
-                required: "Вы должны указать пароль *",
-                minLength: {
-                  value: 6,
-                  message: "пароль должен содержать не менее 6 символов",
-                },
-              })}
-            />
-            {errors.password && (
-              <p className="error">
-                <span style={{ color: "red" }}>{errors.password.message}</span>
-              </p>
-            )}
-          </div>
-
-          <div className="createAccount">
-            <button type="submit" onClick={handleSubmit(onSubmit)}>
-              ВОЙТИ
-            </button>
-            {errors.name &&
-              errors.email &&
-              errors.password &&
-              "Все поля обязательны для заполнения"}
-          </div>
         </form>
+        <div className="createAccount">
+          <button type="submit" onClick={handleSubmit(onSubmit)}>
+            ВОЙТИ
+            </button>
+          {errors.name &&
+            errors.email &&
+            "Все поля обязательны для заполнения"}
+        </div>
       </div>
     </div>
   );

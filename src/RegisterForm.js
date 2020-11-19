@@ -1,19 +1,17 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { FormContext } from "./FormContext";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const RegisterForm = () => {
   const history = useHistory();
-  const { register, handleSubmit, errors, setError, watch } = useForm({});
+  const { register, handleSubmit, errors } = useForm({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [language, setLanguage] = useState(false);
   const [tnc, setTnc] = useState(false);
-  const [users, setUsers] = useContext(FormContext);
-  const password = useRef({});
-  password.current = watch("password", "");
+
   const onSubmit = async (data) => {
     history.push("/login");
     alert(JSON.stringify(data));
@@ -22,14 +20,19 @@ const RegisterForm = () => {
   const updateName = (e) => {
     setName(e.target.value);
   };
-  const updateTnc = (e) => {
-    setTnc(e.target.value);
-  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const updatePhone = (e) => {
     setPhone(e.target.value);
+  };
+  const updateLanguage = (e) => {
+    setLanguage(e.target.value);
+  };
+  const updateTnc = (e) => {
+    setTnc(e.target.checked);
   };
 
   function onSubmitForm(data) {
@@ -106,7 +109,7 @@ const RegisterForm = () => {
             <label htmlFor="phone">Номер телефона</label>
             <input
               className=" "
-              placeholder="Введите номер телефона"
+              placeholder="Введите номер"
               type="text"
               value={phone}
               name="phone"
@@ -126,57 +129,36 @@ const RegisterForm = () => {
             )}
           </div>
 
-          <div className="password">
-            <label htmlFor="password">Пароль</label>
-            <input
-              className=" "
-              placeholder="Введите Ваш пароль"
-              type="password"
-              name="password"
+          <div className="language">
+            <label htmlFor="language">Язык</label>
+            <select
+              className="custom-select"
+              name="language"
+              value={language}
+              placeholder="Язык"
               ref={register({
                 required: "Введено некорректное значение",
-                minLength: {
-                  value: 6,
-                  message: "пароль должен содержать не менее 6 символов",
-                },
               })}
-            />
-            {errors.password && (
+              onChange={updateLanguage}
+            >
+              <option></option>
+              <option>Русский</option>
+              <option>Английский</option>
+              <option>Китайский</option>
+              <option>Испанский</option>
+            </select>
+            {errors.language && (
               <p className="error">
-                <span>{errors.password.message}</span>
-              </p>
-            )}
-          </div>
-
-          <div className="repassword">
-            <label htmlFor="repassword">Повторите пароль</label>
-            <input
-              className=" "
-              placeholder="Повторите пароль"
-              type="password"
-              name="repassword"
-              ref={register({
-                required: "Введено некорректное значение",
-                validate: (value) =>
-                  value === password.current || "Пароли не совпадают",
-              })}
-            />
-            {errors.repassword && (
-              <p className="error">
-                <span>
-                  {errors.repassword.message}
-                </span>
+                <span>{errors.language.message}</span>
               </p>
             )}
           </div>
 
           <div className="checkbox">
-            <label for="check1"></label>
-            <input id="check1"
+            <label for="check"></label>
+            <input id="check"
               type="checkbox"
-              name="check"
-              value="check1"
-              onChange={(e) => setTnc(e.target.checked)}
+              value="check"
               name="tnc"
               value={tnc}
               ref={register({
@@ -184,12 +166,13 @@ const RegisterForm = () => {
               })}
               onChange={updateTnc}
             />
+            <span className="accept_use">Принимаю <a href="#" className="conditions">условия</a> использования</span>
             {errors.tnc && (
               <p className="error">
                 <span>{errors.tnc.message}</span>
               </p>
             )}
-            <span className="check">Принимаю <a href="#" className="conditions">условия</a> использования</span>
+
           </div>
 
           <div className="createAccount">
@@ -201,7 +184,7 @@ const RegisterForm = () => {
             {errors.name &&
               errors.email &&
               errors.phone &&
-              errors.password &&
+              errors.language &&
               errors.tnc &&
               "Все поля обязательны для заполнения"}
           </div>
