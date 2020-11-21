@@ -1,0 +1,252 @@
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #E5E5E5;
+}
+
+.form-wrapper {
+  min-width: 360px;
+  max-width: 460px;
+  max-height: 789px;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  border-radius: 24px;
+  box-shadow: 0px 12px 24px rgba(44, 39, 56, 0.02), 0px 32px 64px rgba(44, 39, 56, 0.04);;
+  background-color: #ffffff;
+}
+
+.register {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 30px 0 27px;
+}
+
+h1 {
+  margin: 30px 30px 8px 27px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 44px;
+  color: #2C2738;
+}
+
+.login_open{
+  margin-left: 6px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #0880AE;
+  text-decoration: none;
+}
+
+.firstName {
+  margin-right: 1%;
+}
+
+.firstName,
+.email {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  color: #756F86;
+}
+
+input {
+  width: 400px;
+  height: 52px;
+  margin: 7px 0 28px 0;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #2C2738;
+  background: #FFFFFF;
+  border: 1px solid #DBE2EA;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+  border-radius: 6px;
+}
+
+.custom-select {
+  width: 400px;
+  height: 52px;
+  margin: 7px 30px 28px 3px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #2C2738;
+  background: #FFFFFF;
+  border: 1px solid #DBE2EA;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+  border-radius: 6px;
+}
+
+input::placeholder {
+  width: 400px;
+  height: 52px;
+  padding-left: 16px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #7C9CBF;
+}
+
+select::placeholder {
+  width: 400px;
+  height: 52px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #7C9CBF;
+}
+input.error {
+  border: 1px solid red;
+}
+select.error {
+  border: 1px solid red;
+}
+
+input:focus {
+  border: 2px solid #0880AE;
+}
+select:focus {
+  border: 2px solid #0880AE;
+}
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+span {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FF7171;
+}
+
+option{
+  width: 400px;
+  height: 52px;
+  text-align: center;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  background: white;
+  color:#756F86;
+}
+
+option:hover {
+  background: #0880AE;
+  width: 400px;
+  height: 52px;
+}
+.createAccount {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createAccount button {
+  color: #B1B5BF;
+  width: 400px;
+  height: 56px;
+  background: #DBE2EA;
+  box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.08), 0px 4px 8px rgba(44, 39, 56, 0.08);
+  border-radius: 6px;
+}
+
+.createAccount button:hover {
+  color: #fff;
+  width: 400px;
+  height: 56px;
+  background-color: #0880AE;
+  border: 2px solid #1b4f72;
+  border-radius: 6px;
+}
+
+button {
+  width: 400px;
+  height: 56px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: #EBF4F8;
+  border: none !important;
+}
+
+.signin {
+  margin: 0 0 46px 27px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #2C2738;
+  flex-wrap: wrap;
+}
+
+.errorMessage {
+  display: relative;
+}
+
+.createAccount small {
+  color: #999;
+  font-weight: lighter;
+}
+
+input[type=checkbox] {
+width: 24px;
+height: 24px;
+}
+.accept_use{
+  margin-left: 8px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  color: #756F86;
+}
+.conditions{
+  color: #0880AE;
+  text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap');
+
+
+
