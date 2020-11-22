@@ -117,7 +117,7 @@ const RegisterForm = () => {
             ref={register({
               required: "Введено некорректное значение",
               pattern: {
-                value: /^[0-9|\ |\-|\(|\)|\+]{10}[0-9|\ |\-|\(|\)]$/,
+                value: /^[0-9|\ |\-|\(|\)|\+]{10,14}[0-9|\ |\-|\(|\)]$/,
                 message: "Введите действительный номер телефона",
               },
             })}
@@ -133,24 +133,22 @@ const RegisterForm = () => {
 
         <div className="language">
           <label htmlFor="language">Язык</label>
-          <div>
-            <select required
-              className="custom-select"
-              name="language"
-              value={language}
-              placeholder="Язык"
-              ref={register({
-                required: "Введено некорректное значение",
-              })}
-              onChange={updateLanguage}
-            >
-              <option value="" hidden style={{ color: "#7C9CBF" }}>Язык</option>
-              <option>Русский</option>
-              <option>Английский</option>
-              <option>Китайский</option>
-              <option>Испанский</option>
-            </select>
-          </div>
+          <select required
+            className="custom-select"
+            name="language"
+            value={language}
+            placeholder="Язык"
+            ref={register({
+              required: "Введено некорректное значение",
+            })}
+            onChange={updateLanguage}
+          >
+            <option value="" hidden style={{ color: "#7C9CBF" }}>Язык</option>
+            <option>Русский</option>
+            <option>Английский</option>
+            <option>Китайский</option>
+            <option>Испанский</option>
+          </select>
         </div>
 
         <div className="name_error">
@@ -160,7 +158,7 @@ const RegisterForm = () => {
         </div>
 
         <div className="checkbox">
-          <label for="check"></label>
+
           <input
             id="check"
             type="checkbox"
@@ -172,7 +170,11 @@ const RegisterForm = () => {
             })}
             onChange={updateTnc}
           />
+          <label className="check" for="check">
+          </label>
+
           <span className="accept_use">Принимаю <a href="#" className="conditions">условия</a> использования</span>
+
         </div>
 
         <div className="name_error">
