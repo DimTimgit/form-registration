@@ -126,31 +126,13 @@ input:-webkit-autofill{
   border: 1px solid #DBE2EA;
   box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
   border-radius: 6px;
+  
 }
 
 select:required:invalid {
   color: #7C9CBF;
 }
 
-.language select {
-  -webkit-appearance: none;/* Chrome */
-  -moz-appearance: none;/* Firefox */
-  appearance: none;/* убираем дефолнтные стрелочки */
-}
-
-.language:after {
-  content: "\f00c";
-  /* display: block; */
-  border-style: solid;
-  border-width: 6px 5px 0 5px;
-  border-color: #000 transparent transparent transparent;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  z-index: 1;
-  margin-top: -3px;
-}
 input:focus {
   border: 2px solid #0880AE;
 }

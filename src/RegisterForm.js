@@ -133,7 +133,9 @@ const RegisterForm = () => {
 
         <div className="language">
           <label htmlFor="language">Язык</label>
+
           <select required
+
             className="custom-select"
             name="language"
             value={language}
